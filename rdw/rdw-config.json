@@ -1,0 +1,7 @@
+{
+    "django_root_path": "CHANGE_ME",
+    "django_app_path": "CHANGE_ME",
+
+    "react_root_path": "CHANGE_ME",
+    "react_app_path": "CHANGE_ME"
+}
