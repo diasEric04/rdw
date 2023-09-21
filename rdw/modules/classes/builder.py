@@ -79,13 +79,15 @@ class Builder:
     # secondary methods
 
     def static_copy_dirs(self, root, dir: str):
-        new_dir = self.DJANGO_STATIC_FILES / dir
         if dir != 'media':
+            new_dir = self.DJANGO_STATIC_FILES / dir
             warning_message(f'copying dir "{dir}/"')
             new_dir.remove_all()
             os.makedirs(new_dir.str_path, exist_ok=True)
 
     def static_copy_files(self, root, file):
+        if os.path.basename(root) == "media":
+            return
         original_file = CommonFile(root, file)
         new_dir = Directory(os.path.join(
             root.replace(
@@ -93,6 +95,7 @@ class Builder:
                 self.DJANGO_STATIC_FILES.str_path
             )
         ))
+
         warning_message(f'copying file "{file}"...')
         new_file = original_file.self_copy(new_dir)
 
