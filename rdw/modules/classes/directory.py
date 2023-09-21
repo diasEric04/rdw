@@ -34,6 +34,8 @@ class Directory:
                     func_files(root, file)
 
     def self_list_dir(self, func_dirs=None, func_files=None):
+        if not self.exists():
+            return
         for item in os.listdir(self.str_path):
             item_full_path = Path(self.str_path, item)
             if os.path.isdir(str(item_full_path)):
